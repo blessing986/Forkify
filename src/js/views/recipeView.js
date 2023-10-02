@@ -1,5 +1,5 @@
 import icons from 'url:../../img/icons.svg';
-import {Fraction} from 'fractional';
+import { Fraction } from 'fractional';
 console.log(Fraction);
 
 class RecipeView {
@@ -27,6 +27,10 @@ class RecipeView {
     this.#parentElement.innerHTML = '';
     this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   };
+
+  addHandlerRender(handler) {
+    ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
+  }
 
   #generateMarkup() {
     return `
