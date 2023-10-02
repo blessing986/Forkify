@@ -4,11 +4,15 @@ import { getJSON } from './helpers';
 
 export const state = {
   recipe: {},
+  search: {
+    query: '',
+    results: [],
+  },
 };
 
 export const loadRecipe = async function (id) {
   try {
-    const data = await getJSON(`${API_URL}/${id}`);
+    const data = await getJSON(`${API_URL}${id}`);
 
     // getting rid of the underscore in the console
     const { recipe } = data.data;
@@ -25,6 +29,26 @@ export const loadRecipe = async function (id) {
     console.log(state.recipe);
   } catch (err) {
     // Temporary error handling
+    console.error(`${err}💥💥💥💥`);
+    throw err;
+  }
+};
+
+export const loadSearchResults = async query => {
+  try {
+    state.search.query = query;
+
+    const data = await getJSON(`${API_URL}?search=${query}`);
+    console.log({ data });
+    state.search.results = data.data.recipes.map(rec => {
+      return {
+        id: rec.id,
+        title: rec.title,
+        publisher: rec.publisher,
+        image: rec.image_url,
+      };
+    });
+  } catch (err) {
     console.error(`${err}💥💥💥💥`);
     throw err;
   }
