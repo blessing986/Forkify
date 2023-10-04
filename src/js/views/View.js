@@ -59,4 +59,30 @@ export default class View {
     this._clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
+
+  next(curPage) {
+    return `
+      <button data-goto="${
+        curPage + 1
+      }" class="btn--inline pagination__btn--next">
+            <span>Page ${curPage + 1}</span>
+            <svg class="search__icon">
+              <use href="${icons}#icon-arrow-right"></use>
+            </svg>
+          </button>
+      `;
+  }
+
+  prev(curPage) {
+    return `
+      <button <button data-goto="${
+        curPage - 1
+      }" class="btn--inline pagination__btn--prev">
+            <svg class="search__icon">
+              <use href="${icons}#icon-arrow-left"></use>
+            </svg>
+            <span>Page ${curPage - 1}</span>
+        </button>
+        `;
+  }
 }

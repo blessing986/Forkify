@@ -23,55 +23,17 @@ class PaginationView extends View {
     );
 
     // Page 1, and there are other pages
-    if (curPage === 1 && numPages > 1) {
-      return `
-      <button data-goto="${
-        curPage + 1
-      }" class="btn--inline pagination__btn--next">
-            <span>Page ${curPage + 1}</span>
-            <svg class="search__icon">
-              <use href="${icons}#icon-arrow-right"></use>
-            </svg>
-          </button>
-      `;
-    }
+    if (curPage === 1 && numPages > 1) return `${this.next(curPage)}`;
 
     // Last page
-    if (curPage === numPages && numPages > 1) {
-      return `
-      <button <button data-goto="${
-        curPage - 1
-      }" class="btn--inline pagination__btn--prev">
-            <svg class="search__icon">
-              <use href="${icons}#icon-arrow-left"></use>
-            </svg>
-            <span>Page ${curPage - 1}</span>
-        </button>
-        `;
-    }
+    if (curPage === numPages && numPages > 1) return `${this.prev(curPage)}`;
 
     // Other page
-    if (curPage < numPages) {
+    if (curPage < numPages)
       return `
-        <button <button data-goto="${
-          curPage - 1
-        }" class="btn--inline pagination__btn--prev">
-              <svg class="search__icon">
-                <use href="${icons}#icon-arrow-left"></use>
-              </svg>
-              <span>Page ${curPage - 1}</span>
-          </button>
-
-          <button <button data-goto="${
-            curPage + 1
-          }" class="btn--inline pagination__btn--next">
-            <span>Page ${curPage + 1}</span>
-            <svg class="search__icon">
-              <use href="${icons}#icon-arrow-right"></use>
-            </svg>
-          </button>
-          `;
-    }
+      ${this.prev(curPage)}
+      ${this.next(curPage)}
+      `;
 
     // Page 1, and there are No other pages
     return '';
