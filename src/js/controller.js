@@ -37,6 +37,9 @@ const controlSearchResults = async () => {
   try {
     resultsView.renderSpinner();
 
+    // 0) Update results view to mark selected search result
+    resultsView.update(model.getSearchResultsPage());
+
     // 1. Get search query
     const query = searchView.getQuery();
 
@@ -71,7 +74,8 @@ const controlServings = newServings => {
   model.updateServings(newServings);
 
   // Update the recipe view
-  recipeView.render(model.state.recipe);
+  // recipeView.render(model.state.recipe);
+  recipeView.update(model.state.recipe);
 };
 
 const init = () => {
