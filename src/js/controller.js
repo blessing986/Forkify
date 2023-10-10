@@ -12,11 +12,6 @@ import 'regenerator-runtime/runtime'; // polyfilling async await
 
 // https://forkify-api.herokuapp.com/v2
 
-// hot module reloading from parcel
-if (module.hot) {
-  module.hot.accept();
-}
-
 const controlRecipes = async () => {
   try {
     const id = window.location.hash.slice(1);
